@@ -14,7 +14,6 @@ class CLI
     end
 
     def list_races
-       # Race.new({name: "Tiefling", url: "http:www.tiefling.com"})
         APIManager.get_races
         Race.all.each_with_index do |r, i|
             puts "#{i + 1}. #{r.name}"

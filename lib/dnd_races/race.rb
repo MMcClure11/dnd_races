@@ -26,7 +26,7 @@ class Race
 
     attr_accessor :name, :url, :speed, :age
     
-    def initialize(name:, url:) #.send in initialize, great for inconsistent data
+    def initialize(name:, url:)
         # @index = index
         @name = name
         @url = url
@@ -41,9 +41,9 @@ class Race
     end
 
     def display_race_info
-        puts "\n\n#{name}"
-        puts "speed: #{speed}\n\n"
-        puts age
+        puts "\n#{name}\n\n"
+        puts "Speed: #{speed}\n\n"
+        puts "Lifespan: #{age}\n\n"
     end
 
 end
