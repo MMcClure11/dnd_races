@@ -10,6 +10,7 @@ class CLI
         race = Race.all[input_to_index]
         APIManager.get_info_about(race)
         race.display_race_info
+        what_next
         goodbye
     end
 
@@ -25,10 +26,22 @@ class CLI
         input - 1
     end
 
+    def what_next
+        #user interface: give them the choice to see the list of races, or exit by typing 'list' or 'exit'
+        puts "Type 'list' to see the list of races again, or 'exit' to quit program."
+        input = gets.strip.downcase
+        if input == "list"
+            list_races
+        elsif input == "exit"
+            goodbye
+        else 
+            puts "Invalid response."
+        end
+    end
   
 
     def goodbye
-
+        puts "Thanks for visiting the Dungeon!"
     end
 
 end

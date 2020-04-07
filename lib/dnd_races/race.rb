@@ -24,14 +24,17 @@ class Race
         new(name: name, url: url)
     end
 
-    attr_accessor :name, :url, :speed, :age
+    attr_accessor :name, :url, :speed, :alignment, :age, :size_description, :language_desc
     
     def initialize(name:, url:)
         # @index = index
         @name = name
         @url = url
         @speed = nil
+        @alignment = nil
         @age = nil
+        @size_description = nil
+        @language_desc = nil
 
         save
     end
@@ -43,7 +46,10 @@ class Race
     def display_race_info
         puts "\n#{name}\n\n"
         puts "Speed: #{speed}\n\n"
+        puts "Alignment: #{alignment}\n\n"
         puts "Lifespan: #{age}\n\n"
+        puts "Size: #{size_description}\n\n"
+        puts "Language: #{language_desc}\n\n"
     end
 
 end
