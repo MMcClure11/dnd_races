@@ -27,7 +27,7 @@ class CLI
     end
 
     def what_next
-        #user interface: give them the choice to see the list of races, or exit by typing 'list' or 'exit'
+        #problem, recreates list so has 18 instead of nine??
         puts "Type 'list' to see the list of races again, or 'exit' to quit program."
         input = gets.strip.downcase
         if input == "list"
