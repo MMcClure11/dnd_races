@@ -1,3 +1,5 @@
+# require './lib/dnd_races.rb'
+
 class Race
 
     @@all = []
@@ -16,25 +18,32 @@ class Race
         hsh.each_with_object({}) do |(k,v), mem|
             mem[k.to_sym] = v
         end
-
     end
 
     def self.create(index:, name:, url:)
-        r = new(index: index, name: name, url: url)
-        r.save
-        r
+        new(name: name, url: url)
     end
 
-    attr_accessor :index, :name, :url
+    attr_accessor :name, :url, :speed, :age
     
-    def initialize(index:, name:, url:) #.send in initialize, great for inconsistent data
-        @index = index
+    def initialize(name:, url:) #.send in initialize, great for inconsistent data
+        # @index = index
         @name = name
         @url = url
+        @speed = nil
+        @age = nil
+
+        save
     end
 
     def save
         @@all << self
+    end
+
+    def display_race_info
+        puts "\n\n#{name}"
+        puts "speed: #{speed}\n\n"
+        puts age
     end
 
 end
