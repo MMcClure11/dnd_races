@@ -1,4 +1,4 @@
-class Races
+class Race
 
     @@all = []
 
