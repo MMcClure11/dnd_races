@@ -26,7 +26,7 @@ class DndRaces::CLI
     def loop_program
         loop do
             menu
-            input = get_race_choie
+            input = get_race_choice
             break if input == "exit"
             next if input == "invalid"
             display_race_info(input)
@@ -48,10 +48,16 @@ class DndRaces::CLI
         puts "Please choose a race by number or type 'exit' to quit program:"
     end
 
-    def input_to_index
-        input = gets.strip.to_i
-        input - 1
+    def get_race_choice
+        input = gets.strip.downcase
+        return input if input == 'exit'
+        if valid? 
+            puts "Please enter a valid input:"
+            return "invalid"
+        end
+        return input.to_i - 1
     end
+
 
    
 
