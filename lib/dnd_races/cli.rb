@@ -5,13 +5,17 @@ require_relative './api_manager'
 class DndRaces::CLI
 
     def call
-        puts "Welcome to the dungeon! Please select a race number to learn more about that race.\n\n"
+        greeting
         list_races
         race = DndRaces::Race.all[input_to_index]
         DndRaces::APIManager.get_info_about(race)
         race.display_race_info
         what_next
         goodbye
+    end
+
+    def greeting
+        puts "Welcome to the dungeon! Please select a number to learn more about that race.\n\n"
     end
 
     def list_races
