@@ -2,21 +2,21 @@ require 'pry'
 require_relative './race'
 require_relative './api_manager'
 
-class CLI
+class DndRaces::CLI
 
     def call
         puts "Welcome to the dungeon! Please select a race number to learn more about that race.\n\n"
         list_races
-        race = Race.all[input_to_index]
-        APIManager.get_info_about(race)
+        race = DndRaces::Race.all[input_to_index]
+        DndRaces::APIManager.get_info_about(race)
         race.display_race_info
         what_next
         goodbye
     end
 
     def list_races
-        APIManager.get_races
-        Race.all.each_with_index do |r, i|
+        DndRaces::APIManager.get_races
+        DndRaces::Race.all.each_with_index do |r, i|
             puts "#{i + 1}. #{r.name}"
         end
     end

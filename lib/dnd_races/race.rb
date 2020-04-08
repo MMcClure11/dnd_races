@@ -1,6 +1,6 @@
-# require './lib/dnd_races.rb'
+ require './lib/dnd_races.rb'
 
-class Race
+class DndRaces::Race
 
     @@all = []
 

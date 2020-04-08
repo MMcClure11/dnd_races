@@ -2,4 +2,4 @@
 
 require_relative "../lib/dnd_races"
 
-CLI.new.call
+DndRaces::CLI.new.call
