@@ -4,6 +4,8 @@ require_relative './api_manager'
 
 class DndRaces::CLI
 
+    attr_accessor :race
+
     def call
         greeting
         get_races
@@ -26,6 +28,7 @@ class DndRaces::CLI
             break if input == "exit"
             next if input == "invalid"
             display_race_details(input)
+            print_attributes(input)
         end
     end
 
@@ -41,7 +44,7 @@ class DndRaces::CLI
     end
 
     def display_instructions
-        puts "\n\nPlease choose a race by number or type 'exit' to quit program:"
+        puts "\n\nPlease choose a race by number or enter 'exit' to quit program:"
     end
 
     def get_race_choice
@@ -59,11 +62,35 @@ class DndRaces::CLI
     end
    
     def display_race_details(input)
-        race = DndRaces::Race.all[input]
+        @race = DndRaces::Race.all[input]
         DndRaces::APIManager.get_info_about(race)
-        race.display_race_info
-        puts "Press any key to continue:"
-        gets
+        attribute_options(input)
+    end
+
+    def attribute_options(input)
+        race.display_name
+        puts "1. Speed"
+        puts "2. Alignment"
+        puts "3. Lifespan"
+        puts "4. Size"
+        puts "5. Language"
+        puts "6. Print all attributes"
+        puts "7. Race Menu"
+        puts "Enter a number to see more about an attribute or return to the Race Menu:"
+    end
+
+    def print_attributes(input)
+        loop do 
+            input = gets.strip
+            race.display_attribute_speed if input == "1"
+            race.display_attribute_alignment if input == "2"
+            race.display_attribute_lifespan if input == "3"
+            race.display_attribute_size if input == "4"
+            race.display_attribute_language if input == "5"
+            race.display_race_info if input == "6"
+            #attribute_options(input)
+            break if input == "7" 
+        end
     end
 
     def goodbye

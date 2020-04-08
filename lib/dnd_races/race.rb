@@ -52,4 +52,28 @@ class DndRaces::Race
         puts "Language: #{language_desc}\n\n"
     end
 
+    def display_name
+        puts "\n#{name}\n\n"
+    end
+
+    def display_attribute_speed
+        puts "Speed: #{speed}\n\n"
+    end
+
+    def display_attribute_alignment
+        puts "Alignment: #{alignment}\n\n"
+    end
+
+    def display_attribute_lifespan
+        puts "Lifespan: #{age}\n\n"
+    end
+
+    def display_attribute_size
+        puts "Size: #{size_description}\n\n"
+    end
+    
+    def display_attribute_language
+        puts "Language: #{language_desc}\n\n"
+    end
+
 end
