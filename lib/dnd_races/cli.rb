@@ -8,10 +8,6 @@ class DndRaces::CLI
         greeting
         get_races
         loop_program
-        # race = DndRaces::Race.all[input_to_index]
-        # DndRaces::APIManager.get_info_about(race)
-        # race.display_race_info
-        
         goodbye
     end
 
@@ -51,15 +47,27 @@ class DndRaces::CLI
     def get_race_choice
         input = gets.strip.downcase
         return input if input == 'exit'
-        if valid? 
+        if !valid?(input) 
             puts "Please enter a valid input:"
             return "invalid"
         end
         return input.to_i - 1
     end
 
-
+    def valid?(input)
+        input.to_i.between?(1, DndRaces::Race.all.length)
+    end
    
+    def display_race_info(input)
+        race = DndRaces::Race.all[input_to_index]
+        DndRaces::APIManager.get_info_about(race)
+        race.display_race_info
+    end
+
+    def input_to_index
+        input = gets.strip.to_i
+        input - 1
+    end
 
     def goodbye
         puts "Thanks for visiting the Dungeon!"
