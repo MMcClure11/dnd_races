@@ -6,7 +6,7 @@ class DndRaces::CLI
 
     def call
         greeting
-        list_races
+        get_races
         loop_program
         # race = DndRaces::Race.all[input_to_index]
         # DndRaces::APIManager.get_info_about(race)
@@ -19,11 +19,8 @@ class DndRaces::CLI
         puts "Welcome to the dungeon! Please select a number to learn more about that race.\n\n"
     end
 
-    def list_races
+    def get_races
         DndRaces::APIManager.get_races
-        # DndRaces::Race.all.each_with_index do |r, i|
-        #     puts "#{i + 1}. #{r.name}"
-        # end
     end
 
     def loop_program
@@ -34,6 +31,21 @@ class DndRaces::CLI
             next if input == "invalid"
             display_race_info(input)
         end
+    end
+
+    def menu
+        display_race_list
+        display_instructions
+    end
+
+    def display_race_list
+        DndRaces::Race.all.each_with_index do |r, i|
+            puts "#{i + 1}. #{r.name}"
+        end
+    end
+
+    def display_instructions
+        puts "Please choose a race by number or type 'exit' to quit program:"
     end
 
     def input_to_index
