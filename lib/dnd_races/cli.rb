@@ -12,7 +12,7 @@ class DndRaces::CLI
     end
 
     def greeting
-        puts "Welcome to the dungeon! Please select a number to learn more about that race.\n\n"
+        puts "\n\nWelcome to the dungeon!\n\n"
     end
 
     def get_races
@@ -41,14 +41,14 @@ class DndRaces::CLI
     end
 
     def display_instructions
-        puts "Please choose a race by number or type 'exit' to quit program:"
+        puts "\n\nPlease choose a race by number or type 'exit' to quit program:"
     end
 
     def get_race_choice
         input = gets.strip.downcase
         return input if input == 'exit'
         if !valid?(input) 
-            puts "Please enter a valid input:"
+            puts "\n\nI did not understand that, please enter a valid input:\n\n"
             return "invalid"
         end
         return input.to_i - 1
@@ -62,12 +62,12 @@ class DndRaces::CLI
         race = DndRaces::Race.all[input]
         DndRaces::APIManager.get_info_about(race)
         race.display_race_info
-        puts "press any key to continue"
+        puts "Press any key to continue:"
         gets
     end
 
     def goodbye
-        puts "Thanks for visiting the Dungeon!"
+        puts "\n\nThanks for visiting the Dungeon!\n\n"
     end
 
 end
