@@ -25,7 +25,7 @@ class DndRaces::CLI
             input = get_race_choice
             break if input == "exit"
             next if input == "invalid"
-            display_race_info(input)
+            display_race_details(input)
         end
     end
 
@@ -58,15 +58,12 @@ class DndRaces::CLI
         input.to_i.between?(1, DndRaces::Race.all.length)
     end
    
-    def display_race_info(input)
-        race = DndRaces::Race.all[input_to_index]
+    def display_race_details(input)
+        race = DndRaces::Race.all[input]
         DndRaces::APIManager.get_info_about(race)
         race.display_race_info
-    end
-
-    def input_to_index
-        input = gets.strip.to_i
-        input - 1
+        puts "press any key to continue"
+        gets
     end
 
     def goodbye
