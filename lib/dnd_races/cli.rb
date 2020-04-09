@@ -101,5 +101,3 @@ class DndRaces::CLI
     end
 
 end
-
-

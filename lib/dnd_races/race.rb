@@ -27,7 +27,6 @@ class DndRaces::Race
     attr_accessor :name, :url, :speed, :alignment, :age, :size_description, :language_desc
     
     def initialize(name:, url:)
-        # @index = index
         @name = name
         @url = url
         @speed = nil
@@ -44,12 +43,12 @@ class DndRaces::Race
     end
 
     def display_race_info
-        puts "\n#{name}\n\n"
-        puts "Speed: #{speed}\n\n"
-        puts "Alignment: #{alignment}\n\n"
-        puts "Lifespan: #{age}\n\n"
-        puts "Size: #{size_description}\n\n"
-        puts "Language: #{language_desc}\n\n"
+        display_name
+        display_attribute_speed
+        display_attribute_alignment
+        display_attribute_lifespan
+        display_attribute_size
+        display_attribute_language
     end
 
     def display_name
