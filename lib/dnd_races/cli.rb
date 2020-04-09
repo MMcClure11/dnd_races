@@ -81,13 +81,17 @@ class DndRaces::CLI
         input = gets.strip.downcase
         if input == "7" 
             menu
-        elsif (1..6).include?(input.to_i)
+        elsif !attribute_choice_valid?(input) 
+            invalid_attribute_input      
+        else 
             print_attributes(input)
             handle_print_attributes
-        else
-            invalid_attribute_input 
         end
     end
+
+    def attribute_choice_valid?(input)
+        input.strip.to_i.to_s == input.strip && (1..6).include?(input.to_i)
+    end 
 
     def invalid_attribute_input
         puts "\n\nThat is not a valid option. Please try again!\n\n"
