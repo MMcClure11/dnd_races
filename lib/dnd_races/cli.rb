@@ -33,7 +33,7 @@ class DndRaces::CLI
     end
 
     def display_instructions
-        puts "\n\nPlease choose a race by number or enter 'exit' to quit program:"
+        puts "\n\nPlease choose a race by number or enter 'exit' to quit program:\n\n"
     end
 
     def get_race_choice
@@ -62,9 +62,9 @@ class DndRaces::CLI
         puts "3. Lifespan"
         puts "4. Size"
         puts "5. Language"
-        puts "6. Print all attributes"
+        puts "6. View all attributes"
         puts "7. Race Menu"
-        puts "Enter a number to see more about an attribute or return to the Race Menu:"
+        puts "\n\nEnter a number to see more about an attribute or return to the Race Menu:\n\n"
     end
 
     def print_attributes(input)
@@ -90,7 +90,7 @@ class DndRaces::CLI
     end
 
     def invalid_attribute_input
-        puts "Invalid response: "
+        puts "\n\nThat is not a valid option. Please try again!\n\n"
         attribute_options
         handle_print_attributes
     end
