@@ -10,9 +10,6 @@ class DndRaces::CLI
         greeting
         get_races
         menu
-        attribute_options
-        handle_print_attributes
-        goodbye
     end
 
     def greeting
@@ -22,31 +19,6 @@ class DndRaces::CLI
     def get_races
         DndRaces::APIManager.get_races
     end
-
-    # def race_loop_program
-    #     #loop do
-    #         #binding.pry
-    #         menu
-    #         input = get_race_choice
-    #         break if input == "exit"
-    #         next if input == "invalid"
-    #         get_details_about_race(input)
-    #         attribute_loop_program
-    #         #attribute_options(input)
-    #     #end
-    # end
-
-    # def attribute_loop_program
-    #     loop do 
-    #         input = get_race_choice
-    #         break if input == "exit"
-    #         next if input == "invalid"
-    #         input = get_details_about_race(input)
-    #         attribute_options
-    #         handle_print_attributes(input)
-    #         print_attributes(input)
-    #     end
-    # end
 
     def menu
         display_race_list
@@ -66,30 +38,27 @@ class DndRaces::CLI
 
     def get_race_choice
         input = gets.strip.downcase
-        # return input if input == 'exit'
-        if !valid?(input) 
+        if input == 'exit'
+            goodbye
+        elsif !race_choice_valid?(input) 
             puts "\n\nI did not understand that, please enter a valid input:\n\n"
             menu
-        else
-        #return input.to_i - 1
+        else 
             @race = DndRaces::Race.all[input.to_i - 1]
             DndRaces::APIManager.get_info_about(race)
+            attribute_options
+            handle_print_attributes
         end
     end
 
-    def valid?(input)
+    def race_choice_valid?(input)
         #( /^[1-9]*$/ )
         input.to_i.between?(1, DndRaces::Race.all.length)
     end
-   
-    # def get_details_about_race(input)
-    #     @race = DndRaces::Race.all[input]
-    #     DndRaces::APIManager.get_info_about(race)
-    #     #attribute_options(input)
-    # end
 
     def attribute_options
-        race.display_name
+        #binding.pry
+        self.race.display_name
         puts "1. Speed"
         puts "2. Alignment"
         puts "3. Lifespan"
@@ -107,27 +76,31 @@ class DndRaces::CLI
         race.display_attribute_size if input == "4"
         race.display_attribute_language if input == "5"
         race.display_race_info if input == "6" 
+        attribute_options
     end
 
     def handle_print_attributes
         input = gets.strip.downcase
         if input == "7" 
-            menu
-            attribute_options
-            handle_print_attributes
+            return_to_menu
         elsif (1..6).include?(input.to_i)
             print_attributes(input)
-            attribute_options
-        elsif input == 'exit'
-            goodbye
-        else
-            puts "Invalid response: "
-            attribute_options
-        end
-        loop do 
             handle_print_attributes
-            break if input == "7"
+        else
+            invalid_attribute_input 
         end
+    end
+
+    def return_to_menu
+        menu
+        # attribute_options
+        # handle_print_attributes
+    end
+
+    def invalid_attribute_input
+        puts "Invalid response: "
+        attribute_options
+        handle_print_attributes
     end
 
     def goodbye
