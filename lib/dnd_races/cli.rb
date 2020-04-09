@@ -44,7 +44,7 @@ class DndRaces::CLI
             puts "\n\nI did not understand that, please enter a valid input:\n\n"
             menu
         else 
-            @race = DndRaces::Race.all[input.to_i - 1]
+            self.race = DndRaces::Race.all[input.to_i - 1]
             DndRaces::APIManager.get_info_about(race)
             attribute_options
             handle_print_attributes
@@ -52,12 +52,11 @@ class DndRaces::CLI
     end
 
     def race_choice_valid?(input)
-        #( /^[1-9]*$/ )
-        input.to_i.between?(1, DndRaces::Race.all.length)
+        input.strip.to_i.to_s == input.strip && input.to_i.between?(1, DndRaces::Race.all.length)
     end
 
     def attribute_options
-        @race.display_name
+        self.race.display_name
         puts "1. Speed"
         puts "2. Alignment"
         puts "3. Lifespan"
