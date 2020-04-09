@@ -45,7 +45,7 @@ class DndRaces::CLI
             menu
         else 
             self.race = DndRaces::Race.all[input.to_i - 1]
-            DndRaces::APIManager.get_info_about(race)
+            DndRaces::APIManager.get_info_about(race) if !race.full?
             attribute_options
             handle_print_attributes
         end

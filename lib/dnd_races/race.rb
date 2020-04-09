@@ -29,12 +29,16 @@ class DndRaces::Race
     def initialize(name:, url:)
         @name = name
         @url = url
-        @speed, @alighnment, @age, @size_description, @language_desc = nil, nil, nil, nil, nil
+        @speed, @alignment, @age, @size_description, @language_desc = nil, nil, nil, nil, nil
         save
     end
 
     def save
         @@all << self
+    end
+
+    def full?
+        !!@speed
     end
 
     def display_race_info
