@@ -29,12 +29,7 @@ class DndRaces::Race
     def initialize(name:, url:)
         @name = name
         @url = url
-        @speed = nil
-        @alignment = nil
-        @age = nil
-        @size_description = nil
-        @language_desc = nil
-
+        @speed, @alighnment, @age, @size_description, @language_desc = nil, nil, nil, nil, nil
         save
     end
 
