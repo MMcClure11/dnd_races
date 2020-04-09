@@ -57,8 +57,7 @@ class DndRaces::CLI
     end
 
     def attribute_options
-        #binding.pry
-        self.race.display_name
+        @race.display_name
         puts "1. Speed"
         puts "2. Alignment"
         puts "3. Lifespan"
@@ -82,19 +81,13 @@ class DndRaces::CLI
     def handle_print_attributes
         input = gets.strip.downcase
         if input == "7" 
-            return_to_menu
+            menu
         elsif (1..6).include?(input.to_i)
             print_attributes(input)
             handle_print_attributes
         else
             invalid_attribute_input 
         end
-    end
-
-    def return_to_menu
-        menu
-        # attribute_options
-        # handle_print_attributes
     end
 
     def invalid_attribute_input
