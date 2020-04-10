@@ -1,5 +1,3 @@
-require './lib/dnd_races.rb'
-
 class DndRaces::Race
 
     @@all = []

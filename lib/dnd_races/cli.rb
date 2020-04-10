@@ -1,7 +1,3 @@
-require 'pry'
-require_relative './race'
-require_relative './api_manager'
-
 class DndRaces::CLI
 
     attr_accessor :race
@@ -94,7 +90,6 @@ class DndRaces::CLI
     end
 
     def attribute_choice_valid?(input)
-         # /^\d+$/
         check_input_for_characters(input) && (1..6).include?(input.to_i)
     end 
 

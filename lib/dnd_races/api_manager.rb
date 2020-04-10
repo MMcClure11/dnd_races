@@ -1,7 +1,3 @@
-require 'httparty'
-require 'pry'
-require_relative './race'
-
 class DndRaces::APIManager
 
 BASE_URL = "https://www.dnd5eapi.co"
