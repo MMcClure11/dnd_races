@@ -27,8 +27,8 @@ class DndRaces::CLI
     end
 
     def display_race_list
-        DndRaces::Race.all.each_with_index do |r, i|
-            puts "#{i + 1}. #{r.name}"
+        DndRaces::Race.all.each.with_index(1) do |r, i|
+            puts "#{i}. #{r.name}"
         end
     end
 
@@ -52,7 +52,11 @@ class DndRaces::CLI
     end
 
     def race_choice_valid?(input)
-        input.strip.to_i.to_s == input.strip && input.to_i.between?(1, DndRaces::Race.all.length)
+        check_input_for_characters(input) && input.to_i.between?(1, DndRaces::Race.all.length)
+    end
+
+    def check_input_for_characters(input)
+        input.strip.to_i.to_s == input.strip
     end
 
     def attribute_options
@@ -90,7 +94,8 @@ class DndRaces::CLI
     end
 
     def attribute_choice_valid?(input)
-        input.strip.to_i.to_s == input.strip && (1..6).include?(input.to_i)
+         # /^\d+$/
+        check_input_for_characters(input) && (1..6).include?(input.to_i)
     end 
 
     def invalid_attribute_input
