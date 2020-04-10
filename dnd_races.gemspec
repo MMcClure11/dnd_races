@@ -24,5 +24,5 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "rspec"
-  add_dependency "pry"
+  spec.add_develoment_dependency "pry"
 end
