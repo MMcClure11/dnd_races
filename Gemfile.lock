@@ -39,7 +39,7 @@ PLATFORMS
 
 DEPENDENCIES
   dnd_races!
-  httparty
+  httparty (~> 0.18.0)
   pry
   rake (~> 12.0)
   rspec
