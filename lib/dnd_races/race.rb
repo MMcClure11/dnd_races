@@ -19,7 +19,7 @@ class DndRaces::Race
           end
       end
 
-      def create(index:, name:, url:)
+      def create(index: nil, name:, url:)
           new(name: name, url: url)
       end
     end
