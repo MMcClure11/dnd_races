@@ -2,34 +2,33 @@ class DndRaces::Race
 
     @@all = []
 
-    class << self
-      def all
-          @@all
-      end
-
-      def create_from_api(array_of_hashes)
-          array_of_hashes.each do |racehash|
-              self.create(self.format_hash(racehash))
-          end
-      end
-
-      def format_hash(hsh)
-          hsh.each_with_object({}) do |(k,v), mem|
-              mem[k.to_sym] = v
-          end
-      end
-
-      def create(index: nil, name:, url:)
-          new(name: name, url: url)
-      end
+    def self.all
+        @@all
     end
 
+    def self.create_from_api(array_of_hashes)
+        array_of_hashes.each do |racehash|
+            self.create(self.format_hash(racehash))
+        end
+    end
+
+    def self.format_hash(hsh)
+        hsh.each_with_object({}) do |(k,v), mem|
+            mem[k.to_sym] = v
+        end
+    end
+
+    def self.create(index: nil, name:, url:)
+        new(name: name, url: url)
+    end
+    
     attr_accessor :name, :url, :speed, :alignment, :age, :size_description, :language_desc
     
     def initialize(name:, url:)
         @name = name
         @url = url
-        @speed, @alignment, @age, @size_description, @language_desc = nil, nil, nil, nil, nil
+        @speed = nil
+        @alignment, @age, @size_description, @language_desc = nil, nil, nil, nil
         save
     end
 

@@ -138,10 +138,23 @@ RSpec.describe DndRaces::Race do
     end
   end
 
-  # describe "#display_name" do
-  #   it "puts race.name" do
-  #     expect(race).to puts "Elf"
-  #     race.display_name
+  describe "#display_name" do
+    let(:race) do 
+      DndRaces::Race.new({name: "Dwarf", url: "www.dwarf.com"})
+    end
+    it "outputs the name of the race" do
+      expect($stdout).to receive(:puts).with("\nDwarf\n\n")
+      race.display_name
+    end
+  end
+
+  # describe "#display_attribute_speed" do
+  #   let(:race) do 
+  #     DndRaces::APIManager.get_info_about({speed: "45"})
+  #   end
+  #   it "outputs the speed of the race" do
+  #     expect($stdout).to receive(:puts).with("Speed: 45 \n\n")
+  #     race.display_attribute_speed
   #   end
   # end
 
