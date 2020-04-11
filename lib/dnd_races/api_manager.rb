@@ -5,7 +5,7 @@ BASE_URL = "https://www.dnd5eapi.co"
     def self.get_races
         res = HTTParty.get(BASE_URL + "/api/races")
        DndRaces::Race.create_from_api(res["results"])
-    
+        binding.pry
     end
 
     def self.get_info_about(race)
