@@ -2,6 +2,17 @@ require "spec_helper"
 
 RSpec.describe DndRaces::CLI do
 
+  let(:api_res) do 
+    [{name: "Elf", url: "www.elf.com"},
+    { name:"Dragonborn", url: "www.dragon.com"},
+    {name: "Dwarf", url: "www.dwarf.com"}
+    ]
+  end
+
+  let(:race) do 
+    DndRaces::Race.new({name: "Elf", url: "www.elf.com"})
+  end
+
   describe "#call" do
     cli = DndRaces::CLI.new
 
@@ -83,6 +94,28 @@ RSpec.describe DndRaces::CLI do
       expect(cli).to receive(:get_race_choice)
       cli.get_race_choice
     end
+  end
+
+  describe "#display_race_list" do
+  cli = DndRaces::CLI.new
+  let(:race) do 
+    DndRaces::Race.new({name: "Elf", url: "www.elf.com"})
+  end
+
+    it "prints all races from the DND API in a numbered list" do 
+      expect($stdout).to receive(:puts).with("1. Elf")
+
+      cli.display_race_list
+    end
+  end
+
+  describe "#display_instructions" do
+    cli = DndRaces::CLI.new
+    it "outputs instructions for user" do
+      expect($stdout).to receive(:puts).with("\n\nPlease choose a race by number or enter 'exit' to quit program:\n\n")
+      cli.display_instructions
+    end
+
   end
 
 end

@@ -67,16 +67,6 @@ class DndRaces::CLI
         puts "\n\nEnter a number to see more about an attribute or return to the Race Menu:\n\n"
     end
 
-    def print_attributes(input)
-        race.display_attribute_speed if input == "1"
-        race.display_attribute_alignment if input == "2"
-        race.display_attribute_lifespan if input == "3"
-        race.display_attribute_size if input == "4"
-        race.display_attribute_language if input == "5"
-        race.display_race_info if input == "6" 
-        attribute_options
-    end
-
     def handle_print_attributes
         input = gets.strip.downcase
         if input == "7" 
@@ -87,6 +77,16 @@ class DndRaces::CLI
             print_attributes(input)
             handle_print_attributes
         end
+    end
+
+    def print_attributes(input)
+        race.display_attribute_speed if input == "1"
+        race.display_attribute_alignment if input == "2"
+        race.display_attribute_lifespan if input == "3"
+        race.display_attribute_size if input == "4"
+        race.display_attribute_language if input == "5"
+        race.display_race_info if input == "6" 
+        attribute_options
     end
 
     def attribute_choice_valid?(input)
