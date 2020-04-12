@@ -44,4 +44,45 @@ RSpec.describe DndRaces::CLI do
     end
   end
 
+  describe "#get_races" do
+    cli = DndRaces::CLI.new
+    race_response = {name: "Elf", url: "www.elf.com"}
+
+    before do
+      allow(DndRaces::APIManager).to receive(:get_races).and_return(race_response)
+    end
+
+    it "calls APIManager.get_races" do
+      expect(DndRaces::APIManager).to receive(:get_races)
+      cli.get_races
+    end
+  end
+
+  describe "#menu" do
+    cli = DndRaces::CLI.new
+
+    before do
+      allow($stdout).to receive(:puts)
+      allow(cli).to receive(:display_race_list)
+      allow(cli).to receive(:display_instructions)
+      allow(cli).to receive(:get_race_choice)
+    end
+
+    it "calls #display_race_list" do
+      # allow(cli).to receive(:display_race_list)
+      expect(cli).to receive(:display_race_list)
+      cli.display_race_list
+    end
+
+    it "calls #display_instructions" do
+      expect(cli).to receive(:display_instructions)
+      cli.display_instructions
+    end
+
+    it "calls #get_race_choice" do
+      expect(cli).to receive(:get_race_choice)
+      cli.get_race_choice
+    end
+  end
+
 end
