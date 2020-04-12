@@ -1,26 +1,35 @@
-# DndRaces
+# DND Races for Character Creation
 
-Discover detailed information about different races for creating DND characters.
+A Ruby Gem providing a CLI for users to view detailed information about different races for creating DND characters based on the DND's 5th Edition API. Includes information such as a race's: speed, alignment, size, lifespan, and languages.
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'dnd_races'
-```
-
-And then execute:
-
-    $ bundle install
-
-Or install it yourself as:
-
-    $ gem install dnd_races
+git clone https://github.com/MMcClure11/dnd_races
+cd dnd_races/
 
 ## Usage
 
-TODO: Write usage instructions here
+Use the command below and follow interactive prompts
+
+    bin/dnd_races
+
+## Running Tests
+
+To run automated tests for api type the below:
+
+    rspec ./spec/api_spec.rb
+
+To run automated tests for cli type the below:
+
+    rspec ./spec/cli_spec.rb
+
+To run automated test for the race type the below:
+
+    rspec ./spec/race_spec.rb
 
 ## Development
 
@@ -30,7 +39,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/<github username>/dnd_races. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/<github username>/dnd_races/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/MMcClure11/dnd_races. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/<github username>/dnd_races/blob/master/CODE_OF_CONDUCT.md).
 
 
 ## License
