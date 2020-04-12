@@ -56,7 +56,7 @@ class DndRaces::CLI
     end
 
     def attribute_options
-        self.race.display_name
+        puts self.race.display_name
         puts "1. Speed"
         puts "2. Alignment"
         puts "3. Lifespan"
@@ -80,12 +80,12 @@ class DndRaces::CLI
     end
 
     def print_attributes(input)
-        race.display_attribute_speed if input == "1"
-        race.display_attribute_alignment if input == "2"
-        race.display_attribute_lifespan if input == "3"
-        race.display_attribute_size if input == "4"
-        race.display_attribute_language if input == "5"
-        race.display_race_info if input == "6" 
+        puts race.display_attribute_speed if input == "1"
+        puts race.display_attribute_alignment if input == "2"
+        puts race.display_attribute_lifespan if input == "3"
+        puts race.display_attribute_size if input == "4"
+        puts race.display_attribute_language if input == "5"
+        puts race.display_race_info if input == "6" 
         attribute_options
     end
 

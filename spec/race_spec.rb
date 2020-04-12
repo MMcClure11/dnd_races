@@ -97,45 +97,11 @@ RSpec.describe DndRaces::Race do
   
   describe "#display_race_info" do 
 
-    before do 
-      allow($stdout).to receive(:puts)
+    it "#display_race_info" do
+      dwarf = described_class.new(name: "Dwarf", speed: "27", alignment: "sometimes nice", age: "old fart", size_description: "tiny person", language_desc: "dwarvish")
+      expect(dwarf.display_race_info).to eq("\nDwarf\n\nSpeed: 27\n\nAlignment: sometimes nice\n\nLifespan: old fart\n\nSize: tiny person\n\nLanguage: dwarvish\n\n")
     end
 
-    it "calls #display_name" do
-      allow(race).to receive(:display_name)
-      expect(race).to receive(:display_name)
-      race.display_race_info
-    end
-
-    it "calls #display_attribute_speed" do 
-      allow(race).to receive(:display_attribute_speed)
-      expect(race).to receive(:display_attribute_speed)
-      race.display_race_info
-    end
-
-    it "calls #display_attribute_alignment" do
-      allow(race).to receive(:display_attribute_alignment)
-      expect(race).to receive(:display_attribute_alignment)
-      race.display_race_info
-    end
-
-    it "calls #display_attribute_lifespan" do
-      allow(race).to receive(:display_attribute_lifespan)
-      expect(race).to receive(:display_attribute_lifespan)
-      race.display_race_info
-    end
-
-    it "calls #display_attribute_size" do
-      allow(race).to receive(:display_attribute_size)
-      expect(race).to receive(:display_attribute_size)
-      race.display_race_info
-    end
-
-    it "calls #display_attribute_language" do
-      allow(race).to receive(:display_attribute_language)
-      expect(race).to receive(:display_attribute_language)
-      race.display_race_info
-    end
   end
 
   describe "#display_name" do
@@ -143,19 +109,8 @@ RSpec.describe DndRaces::Race do
       DndRaces::Race.new({name: "Dwarf", url: "www.dwarf.com"})
     end
     it "outputs the name of the race" do
-      expect($stdout).to receive(:puts).with("\nDwarf\n\n")
-      race.display_name
+      expect(race.display_name).to eq("\nDwarf\n\n")
     end
   end
-
-  # describe "#display_attribute_speed" do
-  #   let(:race) do 
-  #     DndRaces::APIManager.get_info_about({speed: "45"})
-  #   end
-  #   it "outputs the speed of the race" do
-  #     expect($stdout).to receive(:puts).with("Speed: 45 \n\n")
-  #     race.display_attribute_speed
-  #   end
-  # end
 
 end
