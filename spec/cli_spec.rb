@@ -95,19 +95,6 @@ RSpec.describe DndRaces::CLI do
     end
   end
 
-  describe "#display_race_list" do
-  cli = DndRaces::CLI.new
-  let(:race) do 
-    DndRaces::Race.new({name: "Elf", url: "www.elf.com"})
-  end
-
-    xit "prints all races from the DND API in a numbered list" do 
-      expect($stdout).to receive(:puts).with("1. Elf")
-
-      cli.display_race_list
-    end
-  end
-
   describe "#display_instructions" do
     cli = DndRaces::CLI.new
     it "outputs instructions for user" do

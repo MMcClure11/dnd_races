@@ -39,7 +39,7 @@ RSpec.describe DndRaces::Race do
   
   describe "#display_race_info" do 
 
-    it "#display_race_info" do
+    it "#display_race_info returns all of the attributes for a particular race" do
       dwarf = described_class.new(name: "Dwarf", speed: "27", alignment: "sometimes nice", age: "old fart", size_description: "tiny person", language_desc: "dwarvish")
       expect(dwarf.display_race_info).to eq("\nDwarf\n\nSpeed: 27\n\nAlignment: sometimes nice\n\nLifespan: old fart\n\nSize: tiny person\n\nLanguage: dwarvish\n\n")
     end
