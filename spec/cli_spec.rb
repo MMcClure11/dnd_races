@@ -80,7 +80,6 @@ RSpec.describe DndRaces::CLI do
     end
 
     it "calls #display_race_list" do
-      # allow(cli).to receive(:display_race_list)
       expect(cli).to receive(:display_race_list)
       cli.display_race_list
     end

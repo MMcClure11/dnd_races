@@ -8,7 +8,7 @@ class DndRaces::Race
 
     def self.create_from_api(array_of_hashes)
         array_of_hashes.each do |racehash|
-            self.create(self.format_hash(racehash))
+            create(format_hash(racehash))
         end
     end
 
@@ -17,10 +17,12 @@ class DndRaces::Race
             mem[k.to_sym] = v
         end
     end
+    private_class_method :format_hash
 
     def self.create(index: nil, name:, url:)
         new(name: name, url: url)
     end
+    private_class_method :create
     
     attr_accessor :name, :url, :speed, :alignment, :age, :size_description, :language_desc
     
@@ -32,10 +34,6 @@ class DndRaces::Race
         @age = age
         @size_description = size_description
         @language_desc = language_desc
-        save
-    end
-
-    def save
         @@all << self
     end
 

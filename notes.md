@@ -30,3 +30,29 @@ And then execute:
 Or install it yourself as:
 
     $ gem install dnd_races
+
+
+##using class << self
+
+class << self
+  def all
+      @@all
+  end
+
+  def create_from_api(array_of_hashes)
+      array_of_hashes.each do |racehash|
+          create(format_hash(racehash))
+      end
+  end
+
+  private 
+  def format_hash(hsh)
+      hsh.each_with_object({}) do |(k,v), mem|
+          mem[k.to_sym] = v
+      end
+  end
+
+  def create(index: nil, name:, url:)
+      new(name: name, url: url)
+  end
+end
