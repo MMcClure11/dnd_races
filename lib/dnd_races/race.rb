@@ -20,7 +20,9 @@ class DndRaces::Race
     private_class_method :format_hash
 
     def self.create(index: nil, name:, url:)
-        new(name: name, url: url)
+        race = new(name: name, url: url)
+        race.save
+        race
     end
     private_class_method :create
     
@@ -34,6 +36,9 @@ class DndRaces::Race
         @age = age
         @size_description = size_description
         @language_desc = language_desc
+    end
+
+    def save
         @@all << self
     end
 
