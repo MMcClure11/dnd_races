@@ -72,3 +72,5 @@ class DndRaces::Race
     end
 
 end
+
+*however, would have to rewrite tests
