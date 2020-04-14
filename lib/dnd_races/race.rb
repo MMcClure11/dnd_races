@@ -47,14 +47,15 @@ class DndRaces::Race
     end
 
     def display_race_info
-        [
+        array = [
             display_name,
             display_attribute_speed,
             display_attribute_alignment,
             display_attribute_lifespan,
             display_attribute_size,
             display_attribute_language,
-        ].join
+        ]
+        array.join
     end
 
     def display_name
