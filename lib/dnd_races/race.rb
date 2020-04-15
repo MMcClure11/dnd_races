@@ -30,6 +30,17 @@ class DndRaces::Race
         @@all.clear
     end
     
+    def self.sort_by_size
+       races = self.all.each do |race|
+            if !race.full?
+                DndRaces::APIManager.get_info_about(race)
+            end
+        end
+        races.sort! do |current_race, next_race| 
+            current_race.size_description.split.last.chomp(".").length <=> next_race.size_description.split.last.chomp(".").length
+        end
+    end
+
     attr_accessor :name, :url, :speed, :alignment, :age, :size_description, :language_desc
     
     def initialize(name:, url: nil, speed: nil, alignment: nil, age: nil, size_description: nil, language_desc: nil)

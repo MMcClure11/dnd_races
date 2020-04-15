@@ -1,9 +1,9 @@
 class DndRaces::CLI
 
-    attr_accessor :race, :size_description, :name, :sorted
+    attr_accessor :race, :size_description, :name, :menu_sorted
 
     def initialize
-        @sorted = false
+        @menu_sorted = false
     end
 
     def call
@@ -35,7 +35,7 @@ class DndRaces::CLI
     def display_instructions
         sort_message = "type in 'sort size' to sort by size"
         unsort_message = "type in 'unsort' to return to original menu"
-        message = sorted ? unsort_message : sort_message
+        message = menu_sorted ? unsort_message : sort_message
         puts "\n\nPlease choose a race by number, #{message} or enter 'exit' to quit program:\n\n"
     end
 
@@ -44,12 +44,13 @@ class DndRaces::CLI
         if input == 'exit'
             goodbye
         elsif input == 'sort size'
-            sort_by_size
+            DndRaces::Race.sort_by_size
+            self.menu_sorted = true
             menu
         elsif input == 'unsort'
             DndRaces::Race.reset
             get_races
-            self.sorted = false
+            self.menu_sorted = false
             menu
         elsif !race_choice_valid?(input) 
             puts "\n\nI did not understand that, please enter a valid input:\n\n"
@@ -62,17 +63,7 @@ class DndRaces::CLI
         end
     end
 
-    def sort_by_size
-        self.sorted = true
-       races = DndRaces::Race.all.each do |race|
-            if !race.full?
-                DndRaces::APIManager.get_info_about(race)
-            end
-        end
-        races.sort! do |current_race, next_race| 
-            current_race.size_description.split.last.chomp(".").length <=> next_race.size_description.split.last.chomp(".").length
-        end
-    end
+  
 
     def race_choice_valid?(input)
         check_input_for_characters(input) && input.to_i.between?(1, DndRaces::Race.all.length)
