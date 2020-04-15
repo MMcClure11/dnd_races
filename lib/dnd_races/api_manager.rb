@@ -9,7 +9,6 @@ BASE_URL = "https://www.dnd5eapi.co"
     end
 
     def self.get_info_about(race)
-        puts "\n\nMAKING NETWORK REQUEST......\n\n"
         res = HTTParty.get(BASE_URL + "#{race.url}")
         race.speed = res["speed"]
         race.alignment = res["alignment"]

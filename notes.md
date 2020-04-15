@@ -74,3 +74,27 @@ class DndRaces::Race
 end
 
 *however, would have to rewrite tests
+
+
+
+Micah's challenge:
+def sort_by_size
+       races = DndRaces::Race.all.each do |race|
+            if !race.full?
+                DndRaces::APIManager.get_info_about(race)
+            end
+        end
+        sorted_by_size = races.sort do |a, b| 
+            a.size_description.split.last.chomp(".").length <=> b.size_description.split.last.chomp(".").length
+        end
+        puts sorted_by_size
+        binding.pry
+        
+    #   binding.pry
+    #     race_attributes.each_with_index do |race_attribute, i|
+    #         size = race_attribute[i].size_description.split.last.chomp(".")
+    #         size_array << size
+           
+    #             size_array.sort { |a, b| a.length <=> b.length}
+    
+        # size_eq = race_attributes[index].size_description.split.last.chomp(".")

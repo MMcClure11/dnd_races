@@ -1,6 +1,10 @@
 class DndRaces::CLI
 
-    attr_accessor :race
+    attr_accessor :race, :size_description, :name, :sorted
+
+    def initialize
+        @sorted = false
+    end
 
     def call
         greeting
@@ -29,13 +33,23 @@ class DndRaces::CLI
     end
 
     def display_instructions
-        puts "\n\nPlease choose a race by number or enter 'exit' to quit program:\n\n"
+        sort_message = "type in 'sort size' to sort by size"
+        unsort_message = "type in 'unsort' to return to original menu"
+        message = sorted ? unsort_message : sort_message
+        puts "\n\nPlease choose a race by number, #{message} or enter 'exit' to quit program:\n\n"
     end
 
     def get_race_choice
         input = gets.strip.downcase
         if input == 'exit'
             goodbye
+        elsif input == 'sort size'
+            sort_by_size
+            menu
+        elsif input == 'unsort'
+            @@all = []
+            get_races
+            menu
         elsif !race_choice_valid?(input) 
             puts "\n\nI did not understand that, please enter a valid input:\n\n"
             menu
@@ -44,6 +58,18 @@ class DndRaces::CLI
             DndRaces::APIManager.get_info_about(race) if !race.full?
             attribute_options
             handle_print_attributes
+        end
+    end
+
+    def sort_by_size
+        self.sorted = true
+       races = DndRaces::Race.all.each do |race|
+            if !race.full?
+                DndRaces::APIManager.get_info_about(race)
+            end
+        end
+        races.sort! do |current_race, next_race| 
+            current_race.size_description.split.last.chomp(".").length <=> next_race.size_description.split.last.chomp(".").length
         end
     end
 
