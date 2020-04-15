@@ -47,8 +47,9 @@ class DndRaces::CLI
             sort_by_size
             menu
         elsif input == 'unsort'
-            @@all = []
+            DndRaces::Race.reset
             get_races
+            self.sorted = false
             menu
         elsif !race_choice_valid?(input) 
             puts "\n\nI did not understand that, please enter a valid input:\n\n"

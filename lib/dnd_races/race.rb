@@ -25,6 +25,10 @@ class DndRaces::Race
         race
     end
     private_class_method :create
+
+    def self.reset
+        @@all.clear
+    end
     
     attr_accessor :name, :url, :speed, :alignment, :age, :size_description, :language_desc
     
